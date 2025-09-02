@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Computer Engineer</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Smooth scroll for navigation */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-900 text-gray-200">
+
+    <!-- Header & Navigation -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-gray-900/80 backdrop-blur-sm shadow-lg">
+        <nav class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="#home" class="text-2xl font-bold text-indigo-400 rounded-md p-2 hover:bg-gray-800 transition-colors">Your Name</a>
+            <ul class="flex space-x-6 text-sm font-semibold">
+                <li><a href="#about" class="hover:text-white transition-colors rounded-md p-2 hover:bg-gray-800">About</a></li>
+                <li><a href="#projects" class="hover:text-white transition-colors rounded-md p-2 hover:bg-gray-800">Projects</a></li>
+                <li><a href="#skills" class="hover:text-white transition-colors rounded-md p-2 hover:bg-gray-800">Skills</a></li>
+                <li><a href="#contact" class="hover:text-white transition-colors rounded-md p-2 hover:bg-gray-800">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="pt-20">
+        <!-- Home Section -->
+        <section id="home" class="container mx-auto px-4 py-20 flex flex-col md:flex-row items-center justify-between">
+            <div class="max-w-xl text-center md:text-left">
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-4 text-white">
+                    Hello, I'm <span class="text-indigo-400">Your Name</span>.
+                </h1>
+                <p class="text-xl text-gray-400 mb-8">
+                    A passionate Computer Engineer specializing in <span class="text-white font-medium">Software Development and Embedded Systems</span>. I build solutions that bridge the gap between hardware and software.
+                </p>
+                <a href="#projects" class="inline-block bg-indigo-500 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-indigo-600 transition-transform transform hover:scale-105">
+                    View My Work
+                </a>
+            </div>
+            <div class="mt-12 md:mt-0 flex-shrink-0">
+                <img src="https://placehold.co/300x300/1F2937/9CA3AF?text=Your+Photo" alt="Your Photo" class="w-64 h-64 sm:w-80 sm:h-80 rounded-full shadow-2xl object-cover border-4 border-indigo-400">
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="bg-gray-800 py-20">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-white">About Me</h2>
+                <p class="max-w-3xl mx-auto text-lg text-gray-300">
+                    I am a computer engineer with a strong foundation in both software and hardware. My passion lies in creating efficient, scalable, and robust systems. I have experience with a range of technologies, from low-level programming in C++ to building modern web applications with frameworks like React and Angular. I'm always eager to learn new things and tackle challenging problems.
+                </p>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-20">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 text-white">My Projects</h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Project Card 1 -->
+                    <div class="bg-gray-800 rounded-xl overflow-hidden shadow-2xl transform transition-transform hover:scale-105">
+                        <img src="https://placehold.co/600x400/111827/9CA3AF?text=Project+1+Image" alt="Project 1" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-white mb-2">Project Name 1</h3>
+                            <p class="text-gray-400 text-sm mb-4">A brief description of your project. Mention the key problem it solves and its main features. This is a great place to highlight your skills.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-indigo-700 text-indigo-100 text-xs font-medium px-2 py-1 rounded-full">Python</span>
+                                <span class="bg-indigo-700 text-indigo-100 text-xs font-medium px-2 py-1 rounded-full">TensorFlow</span>
+                                <span class="bg-indigo-700 text-indigo-100 text-xs font-medium px-2 py-1 rounded-full">Machine Learning</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <a href="#" class="text-sm font-medium text-indigo-400 hover:text-white transition-colors">View Live &rarr;</a>
+                                <a href="#" class="text-sm font-medium text-indigo-400 hover:text-white transition-colors">Source Code &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 2 -->
+                    <div class="bg-gray-800 rounded-xl overflow-hidden shadow-2xl transform transition-transform hover:scale-105">
+                        <img src="https://placehold.co/600x400/111827/9CA3AF?text=Project+2+Image" alt="Project 2" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-white mb-2">Project Name 2</h3>
+                            <p class="text-gray-400 text-sm mb-4">A brief description of your project. Explain your role and the technologies you used. Did you build this from scratch or as part of a team?</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-indigo-700 text-indigo-100 text-xs font-medium px-2 py-1 rounded-full">C++</span>
+                                <span class="bg-indigo-700 text-indigo-100 text-xs font-medium px-2 py-1 rounded-full">RTOS</span>
+                                <span class="bg-indigo-700 text-indigo-100 text-xs font-medium px-2 py-1 rounded-full">Embedded Systems</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <a href="#" class="text-sm font-medium text-indigo-400 hover:text-white transition-colors">View Live &rarr;</a>
+                                <a href="#" class="text-sm font-medium text-indigo-400 hover:text-white transition-colors">Source Code &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 3 -->
+                    <div class="bg-gray-800 rounded-xl overflow-hidden shadow-2xl transform transition-transform hover:scale-105">
+                        <img src="https://placehold.co/600x400/111827/9CA3AF?text=Project+3+Image" alt="Project 3" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-white mb-2">Project Name 3</h3>
+                            <p class="text-gray-400 text-sm mb-4">A brief description of your project. This could be a personal project, an open-source contribution, or a hackathon submission.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-indigo-700 text-indigo-100 text-xs font-medium px-2 py-1 rounded-full">JavaScript</span>
+                                <span class="bg-indigo-700 text-indigo-100 text-xs font-medium px-2 py-1 rounded-full">React</span>
+                                <span class="bg-indigo-700 text-indigo-100 text-xs font-medium px-2 py-1 rounded-full">Node.js</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <a href="#" class="text-sm font-medium text-indigo-400 hover:text-white transition-colors">View Live &rarr;</a>
+                                <a href="#" class="text-sm font-medium text-indigo-400 hover:text-white transition-colors">Source Code &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="bg-gray-800 py-20">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-12 text-white">My Skills</h2>
+                <div class="flex flex-wrap justify-center gap-6">
+                    <div class="bg-gray-700 p-6 rounded-xl shadow-lg transform transition-transform hover:scale-105 min-w-[150px]">
+                        <h3 class="text-lg font-semibold text-white">Programming Languages</h3>
+                        <ul class="mt-2 text-gray-300">
+                            <li>Python</li>
+                            <li>C++</li>
+                            <li>JavaScript</li>
+                            <li>Rust</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-700 p-6 rounded-xl shadow-lg transform transition-transform hover:scale-105 min-w-[150px]">
+                        <h3 class="text-lg font-semibold text-white">Frameworks & Tools</h3>
+                        <ul class="mt-2 text-gray-300">
+                            <li>React</li>
+                            <li>Node.js</li>
+                            <li>Embedded C</li>
+                            <li>ROS</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-700 p-6 rounded-xl shadow-lg transform transition-transform hover:scale-105 min-w-[150px]">
+                        <h3 class="text-lg font-semibold text-white">Hardware & Systems</h3>
+                        <ul class="mt-2 text-gray-300">
+                            <li>Arduino</li>
+                            <li>Raspberry Pi</li>
+                            <li>Verilog</li>
+                            <li>FPGA</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-white">Get in Touch</h2>
+                <p class="max-w-xl mx-auto text-lg text-gray-300 mb-8">
+                    I'm currently looking for new opportunities. Feel free to reach out to me!
+                </p>
+                <div class="flex flex-col items-center justify-center space-y-4">
+                    <a href="mailto:your.email@example.com" class="bg-indigo-500 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-indigo-600 transition-transform transform hover:scale-105">
+                        Email Me
+                    </a>
+                    <div class="flex space-x-4 mt-4">
+                        <a href="https://linkedin.com/in/yourprofile" target="_blank" class="text-gray-400 hover:text-white transition-colors" aria-label="LinkedIn">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M22.23 0H1.77C.79 0 0 .79 0 1.77v20.46C0 23.21.79 24 1.77 24h20.46c.98 0 1.77-.79 1.77-1.77V1.77C24 .79 23.21 0 22.23 0zM7.18 20.45H3.65V9.45h3.53v11zM5.42 7.71a2.29 2.29 0 1 1 0-4.58 2.29 2.29 0 0 1 0 4.58zM20.45 20.45h-3.52v-5.27c0-1.26-.03-2.88-1.76-2.88-1.76 0-2.03 1.37-2.03 2.79v5.36h-3.52v-11h3.37v1.54h.05c.47-.9 1.63-1.76 3.31-1.76 3.54 0 4.19 2.33 4.19 5.35v6.07z" />
+                            </svg>
+                        </a>
+                        <a href="https://github.com/yourusername" target="_blank" class="text-gray-400 hover:text-white transition-colors" aria-label="GitHub">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M12 0C5.373 0 0 5.373 0 12c0 5.302 3.438 9.8 8.205 11.385.6.11.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.043-1.61-4.043-1.61-.546-1.387-1.334-1.756-1.334-1.756-1.09-.745.08-.73.08-.73 1.205.085 1.838 1.238 1.838 1.238 1.07 1.835 2.809 1.305 3.492.99.108-.77.418-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.23-3.22-.125-.3-.53-1.52.12-3.175 0 0 1.005-.325 3.3 1.23.955-.265 1.96-.4 2.96-.4.995 0 2.005.135 2.96.4 2.29-1.555 3.295-1.23 3.295-1.23.65 1.655.24 2.875.12 3.175.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.095.81 2.21 0 1.605-.015 2.895-.015 3.285 0 .32.22.69.825.57C20.565 21.805 24 17.302 24 12c0-6.627-5.373-12-12-12z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 py-8">
+        <div class="container mx-auto px-4 text-center text-gray-400">
+            <p>&copy; <span id="year"></span> Your Name. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
