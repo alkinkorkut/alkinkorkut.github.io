@@ -1,277 +1,268 @@
-<!DOCTYPE html>
+<!doctype html>
+<!--
+  Alkin Korkut - Portfolyo (GitHub Pages icin statik surum)
+
+  Non-teknik not: Bu klasor, ana projedeki Next.js sitesinin saf HTML/CSS/JS kopyasi. Sunucu, veritabani
+  ya da build adimi gerektirmez; klasorun icerigini oldugu gibi github.io reposuna kopyalaman yeterli.
+  Metinleri ve projeleri degistirmek icin js/data.js dosyasini duzenle.
+
+  Ikonlar: Next.js surumunun kullandigi lucide-react ikonlarinin (v1) SVG cizimleri birebir kopyalandi
+  (Next.js build ciktisindan alindi). Next.js tarafinda lucide guncellenirse ikonlar burada elle guncellenmeli.
+
+  Teknik not: Sabit metinler burada Ingilizce olarak duruyor (JS calismasa ya da yuklenmeden once de
+  anlamli bir sayfa gorunsun diye) ve data-i18n="..." ile js/data.js'teki anahtara bagli. main.js dil
+  degisince bu metinleri degistiriyor. Proje ve yetenek kartlari ise main.js tarafindan data.js'ten uretiliyor.
+-->
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Alkın Korkut - Computer Engineer</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
+    <meta
+      name="description"
+      content="Portfolio of Alkın Korkut, a Computer Engineer specializing in backend systems, APIs, and software architecture."
+    />
+    <link rel="icon" href="icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="apple-icon.png" />
+
+    <!--
+      Bu kucuk script bilerek CSS'ten ONCE ve satir ici (inline): sayfa daha ekrana cizilmeden calisir.
+      - Tema: kayitli tercih "light" degilse <html>'e "dark" sinifi eklenir (varsayilan koyu, Next.js
+        surumundeki gibi). Boylece acik temada bir an koyu, koyu temada bir an acik gorunme (flas) olmaz.
+      - Dil: kayitli dil "tr" ise <html lang="tr"> yapilir; metinleri main.js degistirir.
+      - "js" sinifi: animasyonlu "beliren" ogeler sadece JS calisiyorsa gizli baslar. JS kapaliysa
+        hicbir sey gorunmez kalmaz (bkz. styles.css, .js .reveal).
+      localStorage tarayicida kapali olabilir (ornegin gizli mod); try/catch bu durumda sayfanin bozulmasini engeller.
+    -->
+    <script>
+      (function () {
+        var root = document.documentElement;
+        root.classList.add("js");
+        try {
+          if (localStorage.getItem("theme") !== "light") root.classList.add("dark");
+          if (localStorage.getItem("locale") === "tr") root.lang = "tr";
+        } catch (e) {
+          root.classList.add("dark");
         }
+      })();
+    </script>
 
-        /* Smooth scroll for navigation */
-        html {
-            scroll-behavior: smooth;
-        }
-    </style>
-</head>
+    <link rel="stylesheet" href="css/styles.css" />
+    <!-- defer: script'ler sayfa okunduktan sonra, sirayla calisir (once data.js, sonra main.js). -->
+    <script src="js/data.js" defer></script>
+    <script src="js/main.js" defer></script>
+  </head>
 
-<body class="bg-gray-900 text-gray-200">
+  <body>
+    <!-- ============================== UST MENU ============================== -->
+    <header class="site-header">
+      <nav class="container nav">
+        <a href="#home" class="logo" data-close-menu>Alkın Korkut</a>
 
-    <!-- Header & Navigation -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-gray-900/80 backdrop-blur-sm shadow-lg">
-        <nav class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <a href="#home" class="text-2xl font-bold text-indigo-400 rounded-md p-2 hover:bg-gray-800 transition-colors">Alkın Korkut</a>
-            <ul class="flex space-x-6 text-sm font-semibold">
-                <li><a href="#about" class="hover:text-white transition-colors rounded-md p-2 hover:bg-gray-800">About</a></li>
-                <li><a href="#projects" class="hover:text-white transition-colors rounded-md p-2 hover:bg-gray-800">Projects</a></li>
-                <li><a href="#skills" class="hover:text-white transition-colors rounded-md p-2 hover:bg-gray-800">Skills</a></li>
-                <li><a href="#contact" class="hover:text-white transition-colors rounded-md p-2 hover:bg-gray-800">Contact</a></li>
-            </ul>
-        </nav>
+        <!-- Genis ekran (>= 640px): linkler + dil/tema dugmeleri -->
+        <div class="nav-desktop">
+          <ul class="nav-links">
+            <li><a href="#projects" class="nav-link" data-i18n="nav.projects">Projects</a></li>
+            <li><a href="#about" class="nav-link" data-i18n="nav.about">About</a></li>
+            <li><a href="#skills" class="nav-link" data-i18n="nav.skills">Skills</a></li>
+            <li><a href="#contact" class="nav-link" data-i18n="nav.contact">Contact</a></li>
+          </ul>
+          <div class="nav-tools">
+            <button type="button" class="tool-btn lang-btn" data-lang-toggle aria-label="Switch language to Türkçe">EN</button>
+            <button type="button" class="tool-btn" data-theme-toggle aria-label="Toggle theme">
+              <!-- Iki ikon da sayfada; hangisinin gorunecegini CSS secer (koyu temada gunes, acikta ay). -->
+              <svg class="icon icon-5 icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4" /><path d="M12 2v2" /><path d="M12 20v2" /><path d="m4.93 4.93 1.41 1.41" /><path d="m17.66 17.66 1.41 1.41" /><path d="M2 12h2" /><path d="M20 12h2" /><path d="m6.34 17.66-1.41 1.41" /><path d="m19.07 4.93-1.41 1.41" /></svg>
+              <svg class="icon icon-5 icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401" /></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Dar ekran (< 640px): dil/tema dugmeleri + menu dugmesi -->
+        <div class="nav-mobile">
+          <button type="button" class="tool-btn lang-btn" data-lang-toggle aria-label="Switch language to Türkçe">EN</button>
+          <button type="button" class="tool-btn" data-theme-toggle aria-label="Toggle theme">
+            <svg class="icon icon-5 icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4" /><path d="M12 2v2" /><path d="M12 20v2" /><path d="m4.93 4.93 1.41 1.41" /><path d="m17.66 17.66 1.41 1.41" /><path d="M2 12h2" /><path d="M20 12h2" /><path d="m6.34 17.66-1.41 1.41" /><path d="m19.07 4.93-1.41 1.41" /></svg>
+            <svg class="icon icon-5 icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401" /></svg>
+          </button>
+          <button
+            type="button"
+            class="tool-btn menu-btn"
+            data-menu-toggle
+            aria-label="Toggle navigation menu"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+          >
+            <!-- aria-expanded degerine gore CSS menu (uc cizgi) ya da X ikonunu gosterir. -->
+            <svg class="icon icon-5 icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16" /><path d="M4 12h16" /><path d="M4 19h16" /></svg>
+            <svg class="icon icon-5 icon-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
+          </button>
+        </div>
+      </nav>
+
+      <!-- Dar ekran acilir menusu. Acilip kapanma animasyonu tamamen CSS'te (bkz. .mobile-menu). -->
+      <div id="mobile-menu" class="mobile-menu">
+        <ul>
+          <li><a href="#projects" data-close-menu data-i18n="nav.projects">Projects</a></li>
+          <li><a href="#about" data-close-menu data-i18n="nav.about">About</a></li>
+          <li><a href="#skills" data-close-menu data-i18n="nav.skills">Skills</a></li>
+          <li><a href="#contact" data-close-menu data-i18n="nav.contact">Contact</a></li>
+        </ul>
+      </div>
     </header>
 
-    <main class="pt-20">
-        <!-- Home Section -->
-        <section id="home" class="container mx-auto px-4 py-20 flex flex-col md:flex-row items-center justify-between">
-            <div class="max-w-xl text-center md:text-left">
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-4 text-white">
-                    Hi, I'm <span class="text-indigo-400">Alkın Korkut</span>.
-                </h1>
-                <p class="text-xl text-gray-400 mb-8">
-                    With an ardent commitment to software engineering, I leverage my expertise as a 
-                    <span class="text-white font-medium">Computer Engineer</span> to architect 
-                    elegant solutions that not only resolve tangible problems but also push the boundaries of technological innovation.
-                </p>
-                <a href="#projects" class="inline-block bg-indigo-500 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-indigo-600 transition-transform transform hover:scale-105">
-                    View My Work
+    <main>
+      <!-- ============================== GIRIS (HERO) ============================== -->
+      <section id="home" class="hero">
+        <div class="hero-bg" aria-hidden="true">
+          <div class="blob blob--violet"></div>
+          <div class="blob blob--indigo"></div>
+          <div class="blob blob--emerald"></div>
+          <div class="hero-grid"></div>
+        </div>
+
+        <div class="hero-content">
+          <!-- "reveal": sayfa kaydirilip gorunur olunca yumusakca belirir; --delay sirali belirme icin. -->
+          <div class="reveal">
+            <span class="eyebrow">
+              <span class="eyebrow-dot"></span>
+              <span data-i18n="hero.eyebrow">Computer Engineer · System Architect</span>
+            </span>
+          </div>
+
+          <div class="reveal" style="--delay: 0.1s">
+            <!-- Uc parca tek satirda: aradaki bosluklar metinlerin kendisinde (headingPre / headingPost). -->
+            <h1 class="hero-title"><span data-i18n="hero.headingPre">Engineering </span><span class="gradient-text" data-i18n="hero.headingHighlight">elegant systems</span><span data-i18n="hero.headingPost"> for the modern web.</span></h1>
+          </div>
+
+          <div class="reveal" style="--delay: 0.2s">
+            <p class="hero-text" data-i18n="hero.paragraph">
+              I'm Alkın Korkut, a Computer Engineer who architects scalable backend systems and clean, production-ready APIs.
+            </p>
+          </div>
+
+          <div class="reveal" style="--delay: 0.3s">
+            <div class="hero-ctas">
+              <a href="#projects" class="btn btn-primary">
+                <span data-i18n="hero.ctaPrimary">View My Work</span>
+                <svg class="icon icon-4 icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+              </a>
+              <a href="#contact" class="btn btn-ghost">
+                <svg class="icon icon-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" /><rect x="2" y="4" width="20" height="16" rx="2" /></svg>
+                <span data-i18n="hero.ctaSecondary">Get in Touch</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================== PROJELER ============================== -->
+      <section id="projects" class="section">
+        <div class="container">
+          <div class="reveal">
+            <div class="section-head">
+              <h2 class="section-title" data-i18n="projects.heading">Selected Projects</h2>
+              <p class="section-subtitle" data-i18n="projects.subtitle">
+                Coursework, research and systems I've built — from search-engine algorithms to CPU design.
+              </p>
+            </div>
+          </div>
+          <!-- Kartlar main.js tarafindan js/data.js'teki PROJECTS'ten buraya uretilir. -->
+          <div id="projects-grid" class="grid-4 projects-grid"></div>
+        </div>
+      </section>
+
+      <!-- ============================== HAKKIMDA ============================== -->
+      <section id="about" class="section">
+        <div class="container">
+          <div class="reveal">
+            <div class="about">
+              <h2 class="section-title" data-i18n="about.heading">About Me</h2>
+              <p class="about-text" data-i18n="about.paragraph">
+                Gained hands-on experience in backend development and system architecture as an active software engineer.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================== YETENEKLER ============================== -->
+      <section id="skills" class="section section--tinted">
+        <div class="container">
+          <div class="reveal">
+            <h2 class="section-title section-title--spaced" data-i18n="skills.heading">Skills</h2>
+          </div>
+          <!-- Kartlar main.js tarafindan js/data.js'teki SKILL_GROUPS'tan buraya uretilir. -->
+          <div id="skills-grid" class="grid-4"></div>
+        </div>
+      </section>
+
+      <!-- ============================== ILETISIM ============================== -->
+      <section id="contact" class="section">
+        <div class="container contact">
+          <div class="reveal">
+            <h2 class="section-title" data-i18n="contact.heading">Get in Touch</h2>
+            <p class="contact-text" data-i18n="contact.subtitle">
+              Always looking for new opportunities. Feel free to reach out to me!
+            </p>
+          </div>
+
+          <div class="reveal" style="--delay: 0.1s">
+            <div class="contact-actions">
+              <a href="mailto:alkinkorkut@gmail.com" class="btn btn-primary btn-wide">
+                <svg class="icon icon-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" /><rect x="2" y="4" width="20" height="16" rx="2" /></svg>
+                <span data-i18n="contact.emailCta">Email Me</span>
+              </a>
+              <div class="socials">
+                <a href="https://www.linkedin.com/in/alk%C4%B1n-korkut-b1050b209/" target="_blank" rel="noreferrer" aria-label="LinkedIn" class="social-btn">
+                  <svg class="icon icon-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.23 0H1.77C.79 0 0 .79 0 1.77v20.46C0 23.21.79 24 1.77 24h20.46c.98 0 1.77-.79 1.77-1.77V1.77C24 .79 23.21 0 22.23 0zM7.18 20.45H3.65V9.45h3.53v11zM5.42 7.71a2.29 2.29 0 1 1 0-4.58 2.29 2.29 0 0 1 0 4.58zM20.45 20.45h-3.52v-5.27c0-1.26-.03-2.88-1.76-2.88-1.76 0-2.03 1.37-2.03 2.79v5.36h-3.52v-11h3.37v1.54h.05c.47-.9 1.63-1.76 3.31-1.76 3.54 0 4.19 2.33 4.19 5.35v6.07z" /></svg>
                 </a>
+                <a href="https://github.com/alkinkorkut" target="_blank" rel="noreferrer" aria-label="GitHub" class="social-btn">
+                  <svg class="icon icon-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 0C5.373 0 0 5.373 0 12c0 5.302 3.438 9.8 8.205 11.385.6.11.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.043-1.61-4.043-1.61-.546-1.387-1.334-1.756-1.334-1.756-1.09-.745.08-.73.08-.73 1.205.085 1.838 1.238 1.838 1.238 1.07 1.835 2.809 1.305 3.492.99.108-.77.418-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.23-3.22-.125-.3-.53-1.52.12-3.175 0 0 1.005-.325 3.3 1.23.955-.265 1.96-.4 2.96-.4.995 0 2.005.135 2.96.4 2.29-1.555 3.295-1.23 3.295-1.23.65 1.655.24 2.875.12 3.175.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.095.81 2.21 0 1.605-.015 2.895-.015 3.285 0 .32.22.69.825.57C20.565 21.805 24 17.302 24 12c0-6.627-5.373-12-12-12z" /></svg>
+                </a>
+              </div>
             </div>
-            <div class="mt-12 md:mt-0 flex-shrink-0">
-                <img src="https://placehold.co/300x300/1F2937/9CA3AF?text=Your+Photo" alt="Your Photo" class="w-64 h-64 sm:w-80 sm:h-80 rounded-full shadow-2xl object-cover border-4 border-indigo-400">
-            </div>
-        </section>
-
-        <!-- About Section -->
-        <section id="about" class="bg-gray-800 py-20">
-            <div class="container mx-auto px-4 text-center">
-                <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-white">About Me</h2>
-                <p class="max-w-3xl mx-auto text-lg text-gray-300">
-                    Gained hands-on experience in backend development and system architecture as an active software engineer. 
-                    Designed and maintained scalable backend services using Python (FastAPI/Flask), and developed RESTful APIs 
-                    for seamless service integration. Worked extensively with Oracle PL/SQL to optimize queries and data structures 
-                    for high-performance applications. Streamlined business operations by building automated workflows with a 
-                    flow-diagram-based system. Contributed to architectural decisions, wrote clean, testable code, and ensured code 
-                    quality through debugging and peer reviews.
-                </p>
-            </div>
-        </section>
-
-        <!-- Projects Section -->
-        <section id="projects" class="py-20">
-            <div class="container mx-auto px-4">
-                <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 text-white">My Projects</h2>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Project Card 1 -->
-                    <div class="bg-gray-800 rounded-xl overflow-hidden shadow-2xl transform transition-transform hover:scale-105">
-                        <img src="images/pagerank.jpeg" alt="Project 1" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h3 class="text-xl font-semibold text-white mb-2">Analysis Of PageRank Algorithm</h3>
-                            <p class="text-gray-400 text-sm mb-4">This is a project that I have developed with my friends Emir Mehmet Eryılmaz and Ezgi Alışan. 
-                                This project is developed for Algorithm Analysis lecture. The project consists of an analysis paper of the PageRank algorithm 
-                                and two implementation files written in Python Programming language.</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="bg-indigo-700 text-indigo-100 text-xs font-medium px-2 py-1 rounded-full">Python</span>
-                                <span class="bg-indigo-700 text-indigo-100 text-xs font-medium px-2 py-1 rounded-full">NumPy</span>
-                                <span class="bg-indigo-700 text-indigo-100 text-xs font-medium px-2 py-1 rounded-full">Search Engine</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <a href="https://github.com/alkinkorkut/Analysis-Of-PageRank-Algorithm/blob/main/PageRank_Algorithm_Analysis.pdf" 
-                                   class="text-sm font-medium text-indigo-400 hover:text-white transition-colors">View Report &rarr;</a>
-                                <a href="https://github.com/alkinkorkut/Analysis-Of-PageRank-Algorithm" 
-                                   class="text-sm font-medium text-indigo-400 hover:text-white transition-colors">Source Code &rarr;</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project Card 2 -->
-                    <div class="bg-gray-800 rounded-xl overflow-hidden shadow-2xl transform transition-transform hover:scale-105">
-                        <img src="images/io_scheduling.jpg" alt="Project 2" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h3 class="text-xl font-semibold text-white mb-2">Dynamic IO Scheduler</h3>
-                            <p class="text-gray-400 text-sm mb-4">This is a project that I have developed with my friends Emir Mehmet Eryılmaz and Ezgi Alışan. 
-                                This project is developed for Operating Systems lecture. The project consists of a research paper which contains analysis of some 
-                                IO Scheduler's in Linux. Also, it includes a dynamic IO scheduler program which switches the IO scheduler depending on block size and record length.</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="bg-indigo-700 text-indigo-100 text-xs font-medium px-2 py-1 rounded-full">Python</span>
-                                <span class="bg-indigo-700 text-indigo-100 text-xs font-medium px-2 py-1 rounded-full">OS-Performance Profiling</span>
-                                <span class="bg-indigo-700 text-indigo-100 text-xs font-medium px-2 py-1 rounded-full">IO-Scheduling</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <a href="https://github.com/alkinkorkut/Dynamic-IO-Scheduler/blob/main/OS-Performance%20Profiling%20%26%20IO-Scheduling.pdf" class="text-sm font-medium text-indigo-400 hover:text-white transition-colors">View Report &rarr;</a>
-                                <a href="https://github.com/alkinkorkut/Dynamic-IO-Scheduler" class="text-sm font-medium text-indigo-400 hover:text-white transition-colors">Source Code &rarr;</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project Card 3 -->
-                    <div class="bg-gray-800 rounded-xl overflow-hidden shadow-2xl transform transition-transform hover:scale-105">
-                        <img src="images/dfa.jpg" alt="Project 3" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h3 class="text-xl font-semibold text-white mb-2">Deterministic Finite Automaton (DFA)</h3>
-                            <p class="text-gray-400 text-sm mb-4">The Deterministic Finite Automaton (DFA) structure is implemented in this project by using C++ programming language. 
-                                It takes the information about the DFA from a text file and simulate the DFA for given strings.</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="bg-indigo-700 text-indigo-100 text-xs font-medium px-2 py-1 rounded-full">C++</span>
-                                <span class="bg-indigo-700 text-indigo-100 text-xs font-medium px-2 py-1 rounded-full">DFA</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <a href="https://github.com/alkinkorkut/Deterministic-Finite-Automaton/blob/main/README.md" class="text-sm font-medium text-indigo-400 hover:text-white transition-colors">View README &rarr;</a>
-                                <a href="https://github.com/alkinkorkut/Deterministic-Finite-Automaton" class="text-sm font-medium text-indigo-400 hover:text-white transition-colors">Source Code &rarr;</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project Card 4 -->
-                    <div class="bg-gray-800 rounded-xl overflow-hidden shadow-2xl transform transition-transform hover:scale-105">
-                        <img src="images/pda.jpg" alt="Project 4" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h3 class="text-xl font-semibold text-white mb-2">Pushdown Automata (PDA)</h3>
-                            <p class="text-gray-400 text-sm mb-4">The Pushdown Automaton (PDA) is implemented in this project by using Java programming language. It takes the information 
-                                about the PDA from a text file and simulate the PDA for given strings.</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="bg-indigo-700 text-indigo-100 text-xs font-medium px-2 py-1 rounded-full">Java</span>
-                                <span class="bg-indigo-700 text-indigo-100 text-xs font-medium px-2 py-1 rounded-full">PDA</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <a href="https://github.com/alkinkorkut/Pushdown-Automata/blob/main/README.md" class="text-sm font-medium text-indigo-400 hover:text-white transition-colors">View README &rarr;</a>
-                                <a href="https://github.com/alkinkorkut/Pushdown-Automata" class="text-sm font-medium text-indigo-400 hover:text-white transition-colors">Source Code &rarr;</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project Card 5 -->
-                    <div class="bg-gray-800 rounded-xl overflow-hidden shadow-2xl transform transition-transform hover:scale-105">
-                        <img src="images/simple_cpu.jpg" alt="Project 5" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h3 class="text-xl font-semibold text-white mb-2">Simple CPU</h3>
-                            <p class="text-gray-400 text-sm mb-4">A Simple CPU</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="bg-indigo-700 text-indigo-100 text-xs font-medium px-2 py-1 rounded-full">Verilog</span>
-                                <span class="bg-indigo-700 text-indigo-100 text-xs font-medium px-2 py-1 rounded-full">Computer Architecture</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <a href="https://github.com/alkinkorkut/SimpleCPU" class="text-sm font-medium text-indigo-400 hover:text-white transition-colors">Source Code &rarr;</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project Card 6 -->
-                    <div class="bg-gray-800 rounded-xl overflow-hidden shadow-2xl transform transition-transform hover:scale-105">
-                        <img src="images/advanced_cpp.jpg" alt="Project 6" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h3 class="text-xl font-semibold text-white mb-2">Advanced CPP Programming</h3>
-                            <p class="text-gray-400 text-sm mb-4">Advanced C++ Programming and Programming Paradigms</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="bg-indigo-700 text-indigo-100 text-xs font-medium px-2 py-1 rounded-full">C++</span>
-                                <span class="bg-indigo-700 text-indigo-100 text-xs font-medium px-2 py-1 rounded-full">Programming Paradigms</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <a href="https://github.com/alkinkorkut/Advanced-CPP-Programming" class="text-sm font-medium text-indigo-400 hover:text-white transition-colors">Source Code &rarr;</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Skills Section -->
-        <section id="skills" class="bg-gray-800 py-20">
-            <div class="container mx-auto px-4 text-center">
-                <h2 class="text-3xl sm:text-4xl font-bold mb-12 text-white">My Skills</h2>
-                <div class="flex flex-wrap justify-center gap-6">
-                    <div class="bg-gray-700 p-6 rounded-xl shadow-lg transform transition-transform hover:scale-105 min-w-[150px]">
-                        <h3 class="text-lg font-semibold text-white">Programming Languages</h3>
-                        <ul class="mt-2 text-gray-300">
-                            <li>Python</li>
-                            <li>C++</li>
-                            <li>JavaScript</li>
-                            <li>Java</li>
-                        </ul>
-                    </div>
-                    <div class="bg-gray-700 p-6 rounded-xl shadow-lg transform transition-transform hover:scale-105 min-w-[150px]">
-                        <h3 class="text-lg font-semibold text-white">Frameworks & Tools</h3>
-                        <ul class="mt-2 text-gray-300">
-                            <li>Fast API</li>
-                            <li>Flask</li>
-                            <li>RabbitMQ</li>
-                            <li>Reddis</li>
-                        </ul>
-                    </div>
-                    <div class="bg-gray-700 p-6 rounded-xl shadow-lg transform transition-transform hover:scale-105 min-w-[150px]">
-                        <h3 class="text-lg font-semibold text-white">Hardware & Systems</h3>
-                        <ul class="mt-2 text-gray-300">
-                            <li>Verilog</li>
-                            <li>FPGA</li>
-                        </ul>
-                    </div>
-                    <div class="bg-gray-700 p-6 rounded-xl shadow-lg transform transition-transform hover:scale-105 min-w-[150px]">
-                        <h3 class="text-lg font-semibold text-white">Language Skills</h3>
-                        <ul class="mt-2 text-gray-300">
-                            <li>Native Turkish Speaker</li>
-                            <li>Written and Oral Fluency in English</li>
-                            <li>Elementary Level Deutsch</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="py-20">
-            <div class="container mx-auto px-4 text-center">
-                <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-white">Get in Touch</h2>
-                <p class="max-w-xl mx-auto text-lg text-gray-300 mb-8">
-                    Always looking for new opportunities. Feel free to reach out to me!
-                </p>
-                <div class="flex flex-col items-center justify-center space-y-4">
-                    <a href="mailto:alkinkorkut@gmail.com" class="bg-indigo-500 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-indigo-600 transition-transform transform hover:scale-105">
-                        Email Me
-                    </a>
-                    <div class="flex space-x-4 mt-4">
-                        <a href="https://www.linkedin.com/in/alk%C4%B1n-korkut-b1050b209/" target="_blank" class="text-gray-400 hover:text-white transition-colors" aria-label="LinkedIn">
-                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                <path d="M22.23 0H1.77C.79 0 0 .79 0 1.77v20.46C0 23.21.79 24 1.77 24h20.46c.98 0 1.77-.79 1.77-1.77V1.77C24 .79 23.21 0 22.23 0zM7.18 20.45H3.65V9.45h3.53v11zM5.42 7.71a2.29 2.29 0 1 1 0-4.58 2.29 2.29 0 0 1 0 4.58zM20.45 20.45h-3.52v-5.27c0-1.26-.03-2.88-1.76-2.88-1.76 0-2.03 1.37-2.03 2.79v5.36h-3.52v-11h3.37v1.54h.05c.47-.9 1.63-1.76 3.31-1.76 3.54 0 4.19 2.33 4.19 5.35v6.07z" />
-                            </svg>
-                        </a>
-                        <a href="https://github.com/alkinkorkut" target="_blank" class="text-gray-400 hover:text-white transition-colors" aria-label="GitHub">
-                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                <path fill-rule="evenodd" d="M12 0C5.373 0 0 5.373 0 12c0 5.302 3.438 9.8 8.205 11.385.6.11.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.043-1.61-4.043-1.61-.546-1.387-1.334-1.756-1.334-1.756-1.09-.745.08-.73.08-.73 1.205.085 1.838 1.238 1.838 1.238 1.07 1.835 2.809 1.305 3.492.99.108-.77.418-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.23-3.22-.125-.3-.53-1.52.12-3.175 0 0 1.005-.325 3.3 1.23.955-.265 1.96-.4 2.96-.4.995 0 2.005.135 2.96.4 2.29-1.555 3.295-1.23 3.295-1.23.65 1.655.24 2.875.12 3.175.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.095.81 2.21 0 1.605-.015 2.895-.015 3.285 0 .32.22.69.825.57C20.565 21.805 24 17.302 24 12c0-6.627-5.373-12-12-12z" clip-rule="evenodd" />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
+          </div>
+        </div>
+      </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 py-8">
-        <div class="container mx-auto px-4 text-center text-gray-400">
-            <p>&copy; <span id="year"></span> Alkın Korkut. All rights reserved.</p>
-        </div>
+    <!-- ============================== ALT BILGI ============================== -->
+    <footer class="site-footer">
+      <div class="container">
+        <!-- Yil main.js tarafindan guncel yil ile degistirilir. -->
+        <p>&copy; <span id="year">2026</span> Alkın Korkut. <span data-i18n="footer.rights">All rights reserved.</span></p>
+      </div>
     </footer>
 
-    <script>
-        document.getElementById("year").textContent = new Date().getFullYear();
-    </script>
-</body>
+    <!-- ============================== PROJE DETAY PENCERESI ============================== -->
+    <!--
+      Tarayicinin kendi <dialog> ogesi; acmak icin main.js showModal() cagiriyor. Bu sayede karartilmis arka plan,
+      Esc ile kapanma, klavye odaginin pencere icinde kalmasi ve pencere kapaninca odagin tiklanan karta donmesi
+      ek kod olmadan geliyor. Sayfada tek bir pencere var; hangi projeyi gosterecegini main.js dolduruyor.
+    -->
+    <dialog id="project-dialog" class="project-dialog" aria-labelledby="dialog-title">
+      <!-- method="dialog": form gonderilince tarayici pencereyi kendisi kapatir, X dugmesi icin JS gerekmez.
+           DOM'da ilk sirada: klavye kullanicisi icin ilk odaklanan oge kapatma dugmesi olur. -->
+      <form method="dialog" class="dialog-close-form">
+        <button type="submit" class="dialog-close" data-i18n-aria="projects.close" aria-label="Close">
+          <svg class="icon icon-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
+        </button>
+      </form>
+      <!-- Kaydirma cubugu dialog'da degil bu ic kutuda; yoksa cubuga tiklamak "disariya tiklama" sayilip pencereyi kapatirdi. -->
+      <div class="dialog-scroll">
+        <div class="dialog-media" id="dialog-media">
+          <!-- src bilerek bos degil, hic yok: bos src bazi tarayicilarda gereksiz bir istek tetikler. main.js doldurur. -->
+          <img id="dialog-image" alt="" />
+        </div>
+        <div class="dialog-body">
+          <h2 class="dialog-title" id="dialog-title"></h2>
+          <p class="dialog-desc" id="dialog-desc"></p>
+          <h3 class="dialog-label" data-i18n="projects.technologies">Technologies</h3>
+          <div class="tags dialog-tags" id="dialog-tags"></div>
+          <h3 class="dialog-label" data-i18n="projects.links">Links</h3>
+          <div class="links dialog-links" id="dialog-links"></div>
+        </div>
+      </div>
+    </dialog>
+  </body>
 </html>
